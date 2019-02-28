@@ -176,4 +176,27 @@ Signin(account): Observable<any> {
 
 
 
+//_________________________Method to gel All Retailers //
+getUserImage(userId): Observable<any> {
+  return this.http.get(API_URL + '/user/image/:'+ userId).pipe(
+    map(this.extractData));
+}
+
+
+
+//_________________________Method to gel All Retailers //
+getUserNotifications(userId): Observable<any> {
+  return this.http.get(API_URL + '/user/notifications/:'+ userId).pipe(
+    map(this.extractData));
+}
+
+
+
+
+
+
+
+
+
+
 }

@@ -1,5 +1,15 @@
 <div class="example-container">
-<mat-card>
+
+
+<app-send-to-retailer *ngIf="isSupplier"></app-send-to-retailer>
+
+
+
+
+<app-confirm-product-reception *ngIf="isRetailer" ></app-confirm-product-reception>
+
+<mat-card *ngIf="isFarmer">
+
   <mat-card-header>
       <mat-card-title>Add a New Product</mat-card-title>
   </mat-card-header>
@@ -58,10 +68,26 @@
 
 </mat-form-field>
 
+
+<div fxFlex  fxLayout="column" fxLayout.lt-md="column">
+    <div fxFlexFill>
+      <h4>Select your Supplier </h4>
+      <mat-form-field>
+        <select matNativeControl required>
+          <option value="Beja">Fou ben Fou</option>
+          <option value="Beja">DOu ben Dou</option>
+
+        </select>
+      </mat-form-field>
+    </div>
+
+   </div>
+
 <br/>
+
+<button  (click)="CreateProduct()" mat-raised-button color="primary">Add</button>
 </form>
   </mat-card-content>
 </mat-card>
 
-<button mat-raised-button color="primary">Add</button>
 </div>

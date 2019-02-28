@@ -12,6 +12,8 @@ import {
 
 import { AddProductRoutingModule} from './add-product-routing.module';
 import { AddProductComponent } from './add-product.component';
+import { SendToRetailerComponent } from './send-to-retailer/send-to-retailer.component';
+import { ConfirmProductReceptionComponent } from './confirm-product-reception/confirm-product-reception.component';
 
 
 @NgModule({
@@ -31,6 +33,6 @@ import { AddProductComponent } from './add-product.component';
       MatSelectModule,
       MatSliderModule,
       FlexLayoutModule.withConfig({addFlexToParent: false})],
-    declarations: [AddProductComponent]
+    declarations: [AddProductComponent, SendToRetailerComponent, ConfirmProductReceptionComponent]
 })
 export class AddProductModule {}

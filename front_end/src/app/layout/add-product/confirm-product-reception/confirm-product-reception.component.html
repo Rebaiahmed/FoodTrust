@@ -1,0 +1,23 @@
+<div class="container">
+
+  <h2>Confimr your reception of the Product </h2>
+
+    <form class="example-form">
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Your Location" value="Tunis">
+      </mat-form-field>
+
+
+
+      <button  (click)="Send()" mat-raised-button color="primary">Send</button>
+
+      </form>
+
+
+</div>

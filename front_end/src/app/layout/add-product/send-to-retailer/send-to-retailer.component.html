@@ -1,0 +1,43 @@
+<div class="container">
+
+    <h2>Send this Product to Retailer</h2>
+
+      <form class="example-form">
+
+
+          <div fxFlex  fxLayout="column" fxLayout.lt-md="column">
+              <div fxFlexFill>
+                <h4>Select your Retailer </h4>
+                <mat-form-field>
+                  <select matNativeControl required>
+                    <option value="Beja">Magasin Génerale</option>
+                    <option value="Beja">Géant</option>
+
+                  </select>
+                </mat-form-field>
+              </div>
+
+             </div>
+
+
+        <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Your Location" value="Tunis">
+          </mat-form-field>
+
+
+
+          <button  (click)="Send()" mat-raised-button color="primary">Send</button>
+
+
+
+
+        </form>
+
+
+  </div>
