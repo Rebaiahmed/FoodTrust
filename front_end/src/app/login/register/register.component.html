@@ -1,0 +1,174 @@
+<mat-toolbar>
+    <mat-toolbar-row *ngIf="!showRegister">
+      <a class="app-name" target="_blank">
+        Already have an Food Trust account?
+        <button (click)="selectForm()" mat-button color="primary">Log In</button>
+      </a>
+    </mat-toolbar-row>
+
+    <mat-toolbar-row *ngIf="showRegister">
+        <a class="app-name" target="_blank">
+            Create your
+            Food trust  account
+          <button (click)="selectForm()" mat-button color="primary">Register</button>
+        </a>
+      </mat-toolbar-row>
+
+
+  </mat-toolbar>
+
+
+
+
+<app-login *ngIf="!showRegister"></app-login>
+
+
+<div class="login-page" *ngIf="showRegister">
+  <div class="content" >
+
+      <!-- <h1 class="app-name">Sb Admin Material</h1> -->
+      <form class="login-form" fxFlex  >
+          <div class="text-center">
+              <h2 class="app-name">Food Trust Account Creation</h2>
+          </div>
+
+          <div fxFlex  fxlayout="column" fxlayout.lt-md="column">
+
+
+            <div fxFlexFill>
+                <mat-form-field class="w-100">
+                    <input matInput  [formControl]="firstName"
+                      placeholder="First Name">
+                </mat-form-field>
+            </div>
+
+            <div fxFlexFill>
+                <mat-form-field class="w-100">
+                    <input matInput [formControl]="lastName"  placeholder="Last Name">
+                </mat-form-field>
+            </div>
+
+
+
+
+        </div>
+
+
+
+      <div fxFlex  fxLayout="column" fxLayout.lt-md="column">
+        <div fxFlexFill>
+          <h4>Select your City </h4>
+          <mat-form-field>
+            <select [formControl]="firstName" matNativeControl required>
+              <option value="Beja">Beja</option>
+              <option value="Safx">Sfax</option>
+              <option value="Sousse">Sousse</option>
+
+
+            </select>
+          </mat-form-field>
+        </div>
+
+
+
+        <div fxFlexFill>
+            <mat-form-field class="w-100">
+                <input matInput [formControl]="address"   placeholder="Address">
+            </mat-form-field>
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+        <div fxFlex  fxLayout="row" fxLayout.lt-md="column">
+          <div fxFlexFill>
+            <h4>Select your role </h4>
+            <mat-form-field>
+              <select [formControl]="role"
+              (change)="onRoleSelection()" matNativeControl required>
+                <option selected="true" value="Farmer">Farmer</option>
+                <option value="Supplier">Supplier</option>
+                <option value="Retailer">Retailer</option>
+
+              </select>
+            </mat-form-field>
+          </div>
+      </div>
+
+
+      <!--for the farmer---->
+      <div *ngIf="farmerselected" fxFlex  fxlayout="row" fxlayout.lt-md="column">
+        <div fxFlexFill>
+          <mat-form-field class="example-full-width">
+            <textarea [formControl]="activitysector" matInput placeholder="Your Activity sector"></textarea>
+          </mat-form-field>
+        </div>
+       </div>
+
+
+        <!----for teh supplier-->
+        <div *ngIf="supplierseleetced"  fxFlex  fxlayout="row" fxlayout.lt-md="column">
+            <div fxFlexFill>
+                <mat-form-field class="w-100">
+                    <input matInput [formControl]="supplierCompany"   placeholder="Supplier company Name">
+                </mat-form-field>
+            </div>
+              </div>
+
+
+
+
+
+       <!----for teh retailer-->
+       <div *ngIf="retailerselected"  fxFlex  fxlayout="row" fxlayout.lt-md="column">
+        <div fxFlexFill>
+            <mat-form-field class="w-100">
+                <input matInput [formControl]="retailercompanyName"   placeholder="Company Name">
+            </mat-form-field>
+        </div>
+          </div>
+
+
+
+
+
+          <div fxFlex  fxlayout="column" fxlayout.lt-md="column">
+            <div fxFlexFill>
+                <mat-form-field class="w-100">
+                    <input matInput [formControl]="email"   placeholder="Email">
+                </mat-form-field>
+            </div>
+
+            <div fxFlexFill>
+                <mat-form-field class="w-100">
+                    <input matInput [formControl]="password" type="password" placeholder="Password">
+                </mat-form-field>
+            </div>
+
+        </div>
+
+
+
+          <div fxFlex  fxLayout="column" fxLayout.lt-md="column">
+            <div fxFlexFill>
+                <mat-form-field class="w-100">
+                    <input matInput [formControl]="" type="tel" placeholder="Phone-number">
+                </mat-form-field>
+            </div>
+        </div>
+
+          <div fxFlex  fxLayout="row" fxLayout.lt-md="column">
+              <div fxFlexFill>
+                  <button mat-raised-button color="primary" class="w-100" (click)="onRegister()">Register</button>
+              </div>
+          </div>
+
+      </form>
+  </div>
+</div>
+
