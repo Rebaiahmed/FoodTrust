@@ -1,38 +1,20 @@
-<mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile>
-      ici info personnel
+<mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Frist Name , Lats Name</mat-card-title>
+      <mat-card-subtitle>Company Name</mat-card-subtitle>
+    </mat-card-header>
+    <img
+     mat-card-image width="100px;" height="280px;" src="https://www.qrstuff.com/images/sample.png" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        ici sector activity if falee7
 
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary"
+        (click)="DownloadImage()">Download</button>
 
-    </mat-grid-tile>
-
-
-    <mat-grid-tile>
-
-        <mat-card class="example-card">
-            <mat-card-header>
-              <div mat-card-avatar class="example-header-image"></div>
-              <mat-card-title>Foulen ben foulen </mat-card-title>
-              <mat-card-subtitle>Grower</mat-card-subtitle>
-            </mat-card-header>
-            <img width="200px;" height="200px;" mat-card-image src="https://www.qrstuff.com/images/sample.png" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>Download</button>
-
-            </mat-card-actions>
-          </mat-card>
-
-    </mat-grid-tile>
-
-</mat-grid-list>
-
-
-
-
-
-
-
-
-
+    </mat-card-actions>
+  </mat-card>

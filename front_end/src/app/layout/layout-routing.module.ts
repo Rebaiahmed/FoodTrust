@@ -16,7 +16,7 @@ const routes: Routes = [
 
             {
                 path: '',
-                redirectTo: 'addProduct'
+                redirectTo: 'Productchain'
             },
             {
                 path: 'dashboard',
@@ -67,7 +67,7 @@ const routes: Routes = [
 
 
              {
-              path: 'addProduct',
+              path: 'Productchain',
               loadChildren: './add-product/add-product.module#AddProductModule'
              },
 

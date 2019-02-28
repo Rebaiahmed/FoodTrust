@@ -1,20 +1,31 @@
 <div id="sidebar">
     <mat-nav-list>
-      <a mat-list-item [routerLink]="['/addProduct']">
+      <a mat-list-item [routerLink]="['/dashboard/Productchain']">
         <mat-icon class="sidenav-icon">add</mat-icon> Add Product
     </a>
-    <a mat-list-item  [routerLink]="['/tracking']">
+
+    <a mat-list-item [routerLink]="['/dashboard/Productchain']">
+      <mat-icon class="sidenav-icon">send</mat-icon> Send Product to Retailer
+    </a>
+
+
+    <a mat-list-item [routerLink]="['/dashboard/Productchain']">
+      <mat-icon class="sidenav-icon">confirmation_number</mat-icon> Confirm Product reception
+    </a>
+
+
+    <a mat-list-item  [routerLink]="['/dashboard/tracking']">
       <mat-icon class="sidenav-icon">track_changes</mat-icon> Tracking Product
     </a>
 
-    <a mat-list-item  [routerLink]="['/transactions']">
+    <a mat-list-item  [routerLink]="['/dashboard/transactions']">
       <mat-icon class="sidenav-icon">history</mat-icon> Transactions
     </a>
-    <a mat-list-item [routerLink]="['/notifications']">
+    <a mat-list-item [routerLink]="['/dashboard/notifications']">
       <mat-icon class="sidenav-icon">notification_important</mat-icon> Notifications
     </a>
 
-    <a mat-list-item  [routerLink]="['/wallet']">
+    <a mat-list-item  [routerLink]="['/dashboard/wallet']">
       <mat-icon class="sidenav-icon">account_balance_wallet</mat-icon> MyWallet
     </a>
 
