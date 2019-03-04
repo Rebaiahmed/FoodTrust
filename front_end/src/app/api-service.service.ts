@@ -9,7 +9,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 
 
 // we can now access environment.apiUrl
-const API_URL = 'http://localhost:3000/';
+const API_URL = 'http://localhost:3000';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -150,7 +150,7 @@ createAccount(account): Observable<any> {
     })
   };
   console.log(account);
-  return this.http.post<any>(API_URL + `/createProduct`, JSON.stringify(account), httpOptions);
+  return this.http.post<any>(API_URL + `/createAccount`, JSON.stringify(account), httpOptions);
 
 
 }

@@ -1,12 +1,10 @@
-<div class="example-container">
-
+<div layout="row" layout-xs="column">
+  <div flex>
 
 <app-send-to-retailer *ngIf="isSupplier"></app-send-to-retailer>
 
-
-
-
 <app-confirm-product-reception *ngIf="isRetailer" ></app-confirm-product-reception>
+
 
 <mat-card *ngIf="isFarmer">
 
@@ -20,18 +18,18 @@
     <form>
 
       <mat-form-field>
-          <input matInput placeholder="Product Title"
-          required>
+          <input [formControl]="title"  matInput placeholder="Product Title"
+          >
       </mat-form-field>
       <br/>
 
       <mat-form-field>
-          <textarea matInput placeholder="Product Description"></textarea>
+          <textarea [formControl]="description" matInput placeholder="Product Description"></textarea>
       </mat-form-field>
       <br/>
 
       <mat-form-field>
-          <mat-select placeholder="Select a city">
+          <mat-select [formControl]="city" placeholder="Select a city">
               <mat-option value="Beja">Beja</mat-option>
               <mat-option value="Nabeul">Nabeul</mat-option>
           </mat-select>
@@ -40,7 +38,7 @@
 
 
       <mat-form-field>
-          <mat-select placeholder="Select a category">
+          <mat-select [formControl]="category" placeholder="Select a category">
               <mat-option value="Fruits">Fruits</mat-option>
               <mat-option value="vegetables">vegetables</mat-option>
           </mat-select>
@@ -48,7 +46,7 @@
       <br/>
 
 <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <input [formControl]="hardate" matInput [matDatepicker]="picker" placeholder="Choose a date">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
@@ -56,32 +54,20 @@
 <br/>
 
 <mat-form-field>
-    <input matInput placeholder="Price" type="number" class="example-right-align">
+    <input matInput [formControl]="price" placeholder="Price" type="number" class="example-right-align">
     <span matPrefix>$&nbsp;</span>
     <span matSuffix>.00</span>
 </mat-form-field>
 
 <br/>
 <mat-form-field>
-    <input matInput placeholder="Quantity" type="number" class="example-right-align">
+    <input [formControl]="quantity" matInput placeholder="Quantity" type="number" class="example-right-align">
     <span matPrefix>$&nbsp;</span>
 
 </mat-form-field>
 
 
-<div fxFlex  fxLayout="column" fxLayout.lt-md="column">
-    <div fxFlexFill>
-      <h4>Select your Supplier </h4>
-      <mat-form-field>
-        <select matNativeControl required>
-          <option value="Beja">Fou ben Fou</option>
-          <option value="Beja">DOu ben Dou</option>
 
-        </select>
-      </mat-form-field>
-    </div>
-
-   </div>
 
 <br/>
 
@@ -90,4 +76,68 @@
   </mat-card-content>
 </mat-card>
 
+
+  </div>
+
+
+  <hr />
+  <hr/>
+  <div flex>
+
+
+    <div *ngIf="isFarmer">
+<h2> Send Product to Supplier </h2>
+    <div fxFlex  fxLayout="column" fxLayout.lt-md="column">
+      <div fxFlexFill>
+        <h4>Select your Supplier </h4>
+        <mat-form-field>
+          <select (change)="updateSupplier($event)"  formControlName="supplier"
+          matNativeControl required>
+            <option *ngFor="let supl of suppliers"
+            [value]="supl[0]" >
+            {{supl }}
+           </option>
+
+
+
+
+          </select>
+        </mat-form-field>
+      </div>
+
+
+
+
+      <div fxFlexFill>
+        <h4>Select your Product </h4>
+        <mat-form-field>
+          <select  (change)="updateProduct($event)" formControlName="product" matNativeControl required>
+            <option *ngFor="let pro of products"
+            [value]="pro[0]" >
+            {{pro }}
+           </option>
+
+
+
+
+          </select>
+        </mat-form-field>
+      </div>
+
+
+      <mat-form-field>
+        <input [formControl]="supplierdate" matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+     </div>
+     <button  (click)="SendSupplier()" mat-raised-button color="primary">Send to retialer</button>
+
+    </div>
+
+
+
+  </div>
 </div>
+

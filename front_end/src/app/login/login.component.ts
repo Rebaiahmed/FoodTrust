@@ -24,7 +24,24 @@ export class LoginComponent implements OnInit {
 
 
     onLogin() {
-        localStorage.setItem('isLoggedin', 'true');
-        this.router.navigate(['/dashboard']);
+      let code = this.confirmationcode.value ;
+      let password = this.password.value ;
+      let obj ={
+        'code' : code ,
+        'password': password
+      }
+      this.apiservcie.Signin(obj)
+      .subscribe(data => {
+      console.log('data from back-end' + JSON.stringify(data));
+      localStorage.setItem('isLoggedin', 'true');
+      localStorage.setItem('userData', JSON.stringify(data));
+      this.router.navigate(['/dashboard']);
+
+  } ,  error  => {
+    alert("eror" + error)
+    console.log("Error", error);
+
+    })
+
     }
 }

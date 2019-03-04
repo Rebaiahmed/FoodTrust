@@ -59,7 +59,7 @@
         <div fxFlexFill>
           <h4>Select your City </h4>
           <mat-form-field>
-            <select [formControl]="firstName" matNativeControl required>
+            <select [formControl]="city" matNativeControl required>
               <option value="Beja">Beja</option>
               <option value="Safx">Sfax</option>
               <option value="Sousse">Sousse</option>
@@ -157,7 +157,7 @@
           <div fxFlex  fxLayout="column" fxLayout.lt-md="column">
             <div fxFlexFill>
                 <mat-form-field class="w-100">
-                    <input matInput [formControl]="" type="tel" placeholder="Phone-number">
+                    <input matInput [formControl]="phone" type="tel" placeholder="Phone-number">
                 </mat-form-field>
             </div>
         </div>

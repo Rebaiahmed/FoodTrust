@@ -25,6 +25,13 @@ export class SendToRetailerComponent implements OnInit {
   }
 
 
+  getRetailers()
+  {
+    this.apiservice
+
+
+
+  }
 
   Send()
   {

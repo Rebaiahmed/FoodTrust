@@ -2,9 +2,20 @@
 
   <h2>Confimr your reception of the Product </h2>
 
+
+  <p> Product Title : </p>
+  <p> Product Ctagory : </p>
+
+  <p> Product Farmer date  : </p>
+
+
+  <p> Product Supplier Date  : </p>
+
+  <p> Product Address  : </p>
+
     <form class="example-form">
         <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+            <input matInput [formControl]="datereception" [matDatepicker]="picker" placeholder="Choose a date">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>

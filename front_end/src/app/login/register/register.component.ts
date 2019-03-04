@@ -161,9 +161,9 @@ selectForm()
     'email' : this.email.value ,
     'role' : this.role.value ,
     'address' : this.address.value ,
-    'activitySector' : this.activitysector.value ,
-    'supplierCompany' : this.supplierCompany.value ,
-     'retailercompanyName' :this.retailercompanyName.value
+    'activity' : this.activitysector.value ,
+    'companyName' : this.supplierCompany.value ,
+    'retailercompanyName' :this.retailercompanyName.value
   }
 
   console.log('obj' + JSON.stringify(obj));
@@ -171,8 +171,22 @@ selectForm()
       /*localStorage.setItem('isLoggedin', 'true');
       this.router.navigate(['/dashboard']);*/
      // this.ether.CreateAccount("test");
-     localStorage.setItem('isLoggedin', 'true');
-     this.router.navigate(['/dashboard']);
+
+    this.apiservice.createAccount(obj)
+    .subscribe(data => {
+      console.log('data from back-end' + JSON.stringify(data));
+      localStorage.setItem('isLoggedin', 'true');
+      localStorage.setItem('userData', JSON.stringify(data));
+      this.router.navigate(['/dashboard']);
+
+
+
+  } ,  error  => {
+    alert("eror" + error)
+    console.log("Error", error);
+
+    })
+
 
 
   }

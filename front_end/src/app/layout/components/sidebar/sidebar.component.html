@@ -1,15 +1,15 @@
 <div id="sidebar">
     <mat-nav-list>
-      <a mat-list-item [routerLink]="['/dashboard/Productchain']">
+      <a *ngIf="showFarmer" mat-list-item [routerLink]="['/dashboard/Productchain']">
         <mat-icon class="sidenav-icon">add</mat-icon> Add Product
     </a>
 
-    <a mat-list-item [routerLink]="['/dashboard/Productchain']">
+    <a *ngIf="showSupplier" mat-list-item [routerLink]="['/dashboard/Productchain']">
       <mat-icon class="sidenav-icon">send</mat-icon> Send Product to Retailer
     </a>
 
 
-    <a mat-list-item [routerLink]="['/dashboard/Productchain']">
+    <a *ngIf="showRetailer" mat-list-item [routerLink]="['/dashboard/Productchain']">
       <mat-icon class="sidenav-icon">confirmation_number</mat-icon> Confirm Product reception
     </a>
 

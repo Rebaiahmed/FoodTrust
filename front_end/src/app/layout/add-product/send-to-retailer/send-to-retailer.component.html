@@ -2,6 +2,15 @@
 
     <h2>Send this Product to Retailer</h2>
 
+
+
+  <p> Product Title : </p>
+  <p> Product Ctagory : </p>
+
+  <p> Product Farmer date  : </p>
+
+  <p> Product Address  : </p>
+
       <form class="example-form">
 
 
@@ -10,8 +19,9 @@
                 <h4>Select your Retailer </h4>
                 <mat-form-field>
                   <select matNativeControl required>
-                    <option value="Beja">Magasin Génerale</option>
-                    <option value="Beja">Géant</option>
+                   <!-- <option *ngFor="let ret of retailers">
+                    {{ret.value }}
+                   </option>-->
 
                   </select>
                 </mat-form-field>
@@ -21,13 +31,14 @@
 
 
         <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                <input matInput
+                [formControl]="date" [matDatepicker]="picker" placeholder="Choose a date">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Your Location" value="Tunis">
+            <input  [formControl]="location"  matInput placeholder="Your Location" value="Tunis">
           </mat-form-field>
 
 
