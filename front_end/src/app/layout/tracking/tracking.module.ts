@@ -8,9 +8,17 @@ import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
+import { MatTableModule } from '@angular/material';
+import { MatFormFieldModule, MatPaginatorModule } from '@angular/material';
+import { MatInputModule } from '@angular/material';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+
+
 @NgModule({
     imports: [CommonModule, TrackingRoutingModule, MatGridListModule,NgxGraphModule,
-      NgxChartsModule,LeafletModule],
+      NgxChartsModule,LeafletModule, MatTableModule,MatCardModule,MatButtonModule,MatIconModule],
     declarations: [TrackingComponent]
 })
 export class TrackingModule {}

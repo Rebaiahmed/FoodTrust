@@ -47,9 +47,9 @@ description = new FormControl();
 
 
 //_______________________//
-public supplierdate = new FormControl() ;
-public product = new FormControl([]) ;
-public supplier = new FormControl([]) ;
+ supplierdate = new FormControl() ;
+ product = new FormControl([]) ;
+ supplier = new FormControl([]) ;
 
   constructor(private apiservice: ApiServiceService) { }
 
@@ -200,15 +200,17 @@ getProducts()
 SendSupplier()
 {
 //console.log('ss' + this.supplierdate.value());
-  let shipdate = this.supplierdate.value() ;
+  //let shipdate = this.supplierdate.value() ;
   //alert("submitted");
- console.log
+//console.log('date ' + this.supplierdate.value())
+
 
   let obj ={
-  'idProduct' : 2,
-  'owner' : this.ownerId,
-  'receiver' : 1,
-  'shipdate' : shipdate.getTime()
+  'idProduct' : 1,
+  'idOwner' : this.ownerId,
+  'idReciver' : 1,
+  'shipdate' : new Date().getTime(),
+  'city' : 'Sfax'
   }
 
 

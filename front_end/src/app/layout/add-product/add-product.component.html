@@ -91,10 +91,11 @@
       <div fxFlexFill>
         <h4>Select your Supplier </h4>
         <mat-form-field>
-          <select (change)="updateSupplier($event)"  formControlName="supplier"
+          <select formControlName="supplier" (change)="updateSupplier($event)"
           matNativeControl required>
+        
             <option *ngFor="let supl of suppliers"
-            [value]="supl[0]" >
+            [ngValue]="supplier">
             {{supl }}
            </option>
 
@@ -111,9 +112,10 @@
       <div fxFlexFill>
         <h4>Select your Product </h4>
         <mat-form-field>
-          <select  (change)="updateProduct($event)" formControlName="product" matNativeControl required>
+          <select formControlName="product"  (change)="updateProduct($event)"  matNativeControl required>
+              <option value="">Please select a product</option>
             <option *ngFor="let pro of products"
-            [value]="pro[0]" >
+            [ngValue]="pro" >
             {{pro }}
            </option>
 
@@ -126,9 +128,9 @@
 
 
       <mat-form-field>
-        <input [formControl]="supplierdate" matInput [matDatepicker]="picker" placeholder="Choose a date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+          <input [formControl]="supplierdate" matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
 
      </div>

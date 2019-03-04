@@ -82,6 +82,15 @@ getListRetailers(): Observable<any> {
 
 
 
+
+
+//_________________________Method to gel All Products //
+getProductHistory(productId): Observable<any> {
+  return this.http.get(API_URL + '/products/history/' + productId).pipe(
+    map(this.extractData));
+}
+
+
 //___________Add a Product_________________//
 
 createProduct(product): Observable<any> {
@@ -168,7 +177,7 @@ Signin(account): Observable<any> {
     })
   };
   console.log(account);
-  return this.http.post<any>(API_URL + `/signin`, JSON.stringify(account), httpOptions);
+  return this.http.post<any>(API_URL + `/login`, JSON.stringify(account), httpOptions);
 
 
 }

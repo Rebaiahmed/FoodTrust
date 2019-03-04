@@ -18,10 +18,10 @@
               <div fxFlexFill>
                 <h4>Select your Retailer </h4>
                 <mat-form-field>
-                  <select matNativeControl required>
-                   <!-- <option *ngFor="let ret of retailers">
+                  <select (change)="updateRetailer($event)"  matNativeControl required>
+                   <option [value]="ret[0]" *ngFor="let ret of retailers">
                     {{ret.value }}
-                   </option>-->
+                   </option>
 
                   </select>
                 </mat-form-field>

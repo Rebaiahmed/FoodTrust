@@ -12,7 +12,7 @@ import { ApiServiceService} from '../api-service.service';
 export class LoginComponent implements OnInit {
 
 
-  confirmationcode = new FormControl();
+  email = new FormControl();
   password= new FormControl();
 
 
@@ -24,10 +24,11 @@ export class LoginComponent implements OnInit {
 
 
     onLogin() {
-      let code = this.confirmationcode.value ;
+      console.log('e'+this.email.value )
+      let email = this.email.value ;
       let password = this.password.value ;
       let obj ={
-        'code' : code ,
+        'email' : email ,
         'password': password
       }
       this.apiservcie.Signin(obj)
