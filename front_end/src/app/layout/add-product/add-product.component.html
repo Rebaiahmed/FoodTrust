@@ -89,41 +89,44 @@
 <h2> Send Product to Supplier </h2>
     <div fxFlex  fxLayout="column" fxLayout.lt-md="column">
       <div fxFlexFill>
-        <h4>Select your Supplier </h4>
-        <mat-form-field>
-          <!--<select formControlName="supplier" (change)="updateSupplier($event)"
-          matNativeControl required>
-
-            <option *ngFor="let supl of suppliers"
-            [ngValue]="supplier">
-            {{supl }}
-           </option>
-
-
-
-
-          </select>-->
-        </mat-form-field>
+       
+      
       </div>
 
 
 
 
       <div fxFlexFill>
-        <h4>Select your Product </h4>
+        <h4>Select your Suplier </h4>
+
         <mat-form-field>
-          <!--<select formControlName="product"  (change)="updateProduct($event)"  matNativeControl required>
-              <option value="">Please select a product</option>
-            <option *ngFor="let pro of products"
-            [ngValue]="pro" >
-            {{pro }}
-           </option>
-
-
-
-
-          </select>-->
+          <mat-select placeholder="Favorite food">
+            <mat-option *ngFor="let suppl of suppliers" [value]="suppl">
+              {{suppl }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
+
+  
+
+   
+        
+  
+      </div>
+
+      <div fxFlexFill>
+        <h4>Select your Product </h4>
+
+        <mat-form-field>
+          <mat-select formControlName="supplier" 
+           placeholder="Select your Product">
+            <mat-option *ngFor="let prod of products" [value]="prod">
+              {{prod }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+  
       </div>
 
 
@@ -134,7 +137,7 @@
 </mat-form-field>
 
      </div>
-     <button  (click)="SendSupplier()" mat-raised-button color="primary">Send to retialer</button>
+     <button  (click)="SendSupplier()" mat-raised-button color="primary">Send to Supplier</button>
 
     </div>
 

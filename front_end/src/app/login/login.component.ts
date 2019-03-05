@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
 
   email = new FormControl();
-  password= new FormControl();
+  password = new FormControl();
 
 
     constructor(private router: Router , private apiservcie: ApiServiceService) {}
@@ -25,14 +25,14 @@ export class LoginComponent implements OnInit {
 
     onLogin() {
 
-        this.router.navigate(['/dashboard']);
-      /*console.log('e'+this.email.value )
-      let email = this.email.value ;
-      let password = this.password.value ;
-      let obj ={
+        // this.router.navigate(['/dashboard']);
+      console.log('e' + this.email.value );
+      const email = this.email.value ;
+      const password = this.password.value ;
+      const obj = {
         'email' : email ,
         'password': password
-      }
+      };
       this.apiservcie.Signin(obj)
       .subscribe(data => {
       console.log('data from back-end' + JSON.stringify(data));
@@ -41,10 +41,10 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/dashboard']);
 
   } ,  error  => {
-    alert("eror" + error)
-    console.log("Error", error);
+    alert('eror' + error);
+    console.log('Error', error);
 
-    }*/
+    });
 
     }
 }

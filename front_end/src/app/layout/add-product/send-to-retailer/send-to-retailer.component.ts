@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { ApiServiceService} from '../../../api-service.service';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import { RealTimeServiceService } from '../../../real-time-service.service';
+
 
 @Component({
   selector: 'app-send-to-retailer',
@@ -11,55 +13,62 @@ import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/form
 export class SendToRetailerComponent implements OnInit {
 
 
-  public retailers :  any[];
-  public ownerId : any ;
-  public role : any ;
-  public currentProduct : any ;
+  public retailers:  any[];
+  public ownerId: any ;
+  public role: any ;
+  public currentProduct: any ;
 
-  public retailedid : any ;
+  public retailedid: any ;
+  public  farmer: any ;
+  public product: any ;
 
-  //_______________________//
+  // _______________________//
 public retailerdate = new FormControl() ;
 public retailer = new FormControl([]) ;
 
 
 
-  constructor(private apiservice: ApiServiceService) { }
+  constructor(private apiservice: ApiServiceService,  private realtime: RealTimeServiceService) { }
 
 
 
 
   ngOnInit() {
-    //get the current product_________//
-       //here we will get the current role and display the necessary component____>
-       let userdata = JSON.parse(localStorage.getItem('userData'));
+    // get the current product_________//
+       // here we will get the current role and display the necessary component____>
+       const userdata = JSON.parse(localStorage.getItem('userData'));
 
-       let currentproduct = JSON.parse(localStorage.getItem('currentProduct'));
+       const currentproduct = JSON.parse(localStorage.getItem('currentProduct'));
 
        this.currentProduct = currentproduct ;
 
-       console.log('user data getted init' + JSON.stringify(userdata));
+       console.log('user data getted init' + JSON.stringify(this.currentProduct ));
        this.role = userdata.userData.role ;
        this.ownerId = userdata.smartcontarct ;
+       this.farmer = userdata.firstName + '__' + userdata.lastName;
        console.log('ownerId' + this.ownerId);
 
-    //____get the list of the retailers_____//
+    // ____get the list of the retailers_____//
     this. getRetailers();
+
+    if (this.role === 'Supplier') {
+      this.getUserNotifications(1);
+
+    }
   }
 
 
-  getRetailers()
-  {
+  getRetailers() {
     this.apiservice.getListRetailers()
     .subscribe(data => {
       console.log('list of retilers' + JSON.stringify(data));
       this.retailers = data ;
-  
+
     } , error  => {
-          alert("eror" + error)
-      console.log("Error", error);
-  
-      })
+          alert('eror' + error);
+      console.log('Error', error);
+
+      });
 
 
 
@@ -71,36 +80,49 @@ public retailer = new FormControl([]) ;
 
   }
 
-  Send()
-  {
-  let date = this.retailerdate.value();
+  Send() {
+  const date = this.retailerdate.value;
 
-  let obj ={
+  const obj = {
     'idProduct' : 2,
     'owner' : this.ownerId,
     'receiver' : 1,
-    'shipdate' : date.getTime()
-    }
+    'shipdate' : date.getTime(),
+    'farmerName': this.farmer,
+    'productName': 'Bannanes'
+    };
 
-    //____________________________________//* */
+    // ____________________________________//* */
 this.apiservice.sendProductToRetailer(obj)
 .subscribe(data => {
   console.log('data from back-edn' + JSON.stringify(data));
 
-  alert('Votre Produti est ajouté avec envyé avec succes !')
-  //localStorage.setItem('currentProduct',JSON.stringify(data));
+  alert('Votre Produti est envoyé avec succes !');
+  // localStorage.setItem('currentProduct',JSON.stringify(data));
 
 
 
 
 
 } ,  error  => {
-    alert("eror" + error)
-console.log("Error", error);
+    alert('eror' + error);
+console.log('Error', error);
 
-})
+});
 
-  
+
+  }
+
+
+
+  getUserNotifications(userId) {
+    this.realtime.onNotification(userId)
+    .subscribe(data => {
+      console.log('data rom server' + JSON.stringify(data));
+      this.product = data ;
+
+
+   });
   }
 
 }

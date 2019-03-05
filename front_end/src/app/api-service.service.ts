@@ -28,7 +28,7 @@ export class ApiServiceService {
   }
 
   private extractData(res: Response) {
-    let body = res;
+    const body = res;
     return body || { };
   }
 
@@ -51,14 +51,14 @@ export class ApiServiceService {
 
 
 
-//_________________________Method to gel All Products //
+// _________________________Method to gel All Products //
 getAllProducst(): Observable<any> {
   return this.http.get(API_URL + '/products/').pipe(
     map(this.extractData));
 }
 
 
-//_________________________Method to gel All Products //
+// _________________________Method to gel All Products //
 getFarmerProducts(farmerId): Observable<any> {
   return this.http.get(API_URL + '/products/farmer/' + farmerId).pipe(
     map(this.extractData));
@@ -66,7 +66,7 @@ getFarmerProducts(farmerId): Observable<any> {
 
 
 
-//_________________________Method to gel All Suppliers //
+// _________________________Method to gel All Suppliers //
 getListSuppliers(): Observable<any> {
   return this.http.get(API_URL + '/suppliers').pipe(
     map(this.extractData));
@@ -74,7 +74,7 @@ getListSuppliers(): Observable<any> {
 
 
 
-//_________________________Method to gel All Retailers //
+// _________________________Method to gel All Retailers //
 getListRetailers(): Observable<any> {
   return this.http.get(API_URL + '/retailers').pipe(
     map(this.extractData));
@@ -84,21 +84,21 @@ getListRetailers(): Observable<any> {
 
 
 
-//_________________________Method to gel All Products //
+// _________________________Method to gel All Products //
 getProductHistory(productId): Observable<any> {
   return this.http.get(API_URL + '/products/history/' + productId).pipe(
     map(this.extractData));
 }
 
 
-//___________Add a Product_________________//
+// ___________Add a Product_________________//
 
 createProduct(product): Observable<any> {
 
 
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':'application/json',
+        'Content-Type': 'application/json',
       })
     };
     console.log(product);
@@ -110,14 +110,14 @@ createProduct(product): Observable<any> {
 
 
 
-//___________send Product to supplier_________________//
+// ___________send Product to supplier_________________//
 
 sendProducttoSupplier(product): Observable<any> {
 
 
   const httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':'application/json',
+      'Content-Type': 'application/json',
     })
   };
   console.log(product);
@@ -127,18 +127,18 @@ sendProducttoSupplier(product): Observable<any> {
 }
 
 
-//___________send Product to retailer_________________//
+// ___________send Product to retailer_________________//
 
 sendProductToRetailer(product): Observable<any> {
 
 
   const httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':'application/json',
+      'Content-Type': 'application/json',
     })
   };
   console.log(product);
-  return this.http.post<any>(API_URL + `/supplier_retailer`, JSON.stringify(product), httpOptions);
+  return this.http.post<any>(API_URL + `/producttosupplier`, JSON.stringify(product), httpOptions);
 
 
 }
@@ -148,14 +148,14 @@ sendProductToRetailer(product): Observable<any> {
 
 
 
-//___________CreateAccount_________________//
+// ___________CreateAccount_________________//
 
 createAccount(account): Observable<any> {
 
 
   const httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':'application/json',
+      'Content-Type': 'application/json',
     })
   };
   console.log(account);
@@ -166,14 +166,14 @@ createAccount(account): Observable<any> {
 
 
 
-//___________SignIn_________________//
+// ___________SignIn_________________//
 
 Signin(account): Observable<any> {
 
 
   const httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':'application/json',
+      'Content-Type': 'application/json',
     })
   };
   console.log(account);
@@ -185,17 +185,17 @@ Signin(account): Observable<any> {
 
 
 
-//_________________________Method to gel All Retailers //
+// _________________________Method to gel All Retailers //
 getUserImage(userId): Observable<any> {
-  return this.http.get(API_URL + '/user/image/:'+ userId).pipe(
+  return this.http.get(API_URL + '/user/image/:' + userId).pipe(
     map(this.extractData));
 }
 
 
 
-//_________________________Method to gel All Retailers //
+// _________________________Method to gel All Retailers //
 getUserNotifications(userId): Observable<any> {
-  return this.http.get(API_URL + '/user/notifications/:'+ userId).pipe(
+  return this.http.get(API_URL + '/user/notifications/:' + userId).pipe(
     map(this.extractData));
 }
 

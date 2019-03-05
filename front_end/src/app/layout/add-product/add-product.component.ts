@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SendToRetailerComponent} from '../add-product/send-to-retailer/send-to-retailer.component';
 import { ConfirmProductReceptionComponent} from '../add-product/confirm-product-reception/confirm-product-reception.component';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroupDirective, NgForm, Validators, FormGroup} from '@angular/forms';
 
 
 import { ApiServiceService} from '../../api-service.service';
@@ -12,17 +12,21 @@ import { ApiServiceService} from '../../api-service.service';
 })
 export class AddProductComponent implements OnInit {
 
-  lat:any ;
-  lon:any;
+  lat: any ;
+  lon: any;
   submitted = false;
-  isFarmer: boolean = false ;
-  isSupplier: boolean = false ;
-  isRetailer: boolean = false ;
+  isFarmer = false ;
+  isSupplier = false ;
+  isRetailer = false ;
 
-  role: string = '';
+  role = '';
+
+  form = new FormGroup({
+    supplier: new FormControl(),
+  });
 
 
-//_________Declare the FORM of the product_________//
+// _________Declare the FORM of the product_________//
 
 /*profileForm = this.fb.group({
   productTitle: ['', Validators.required],
@@ -32,10 +36,12 @@ export class AddProductComponent implements OnInit {
 
 
 
-public  suppliers : number[] =[];
+public  suppliers: number[] = [];
 public products: any [] ;
-public ownerId : any ;
-//__________________________//
+public ownerId: any ;
+
+public suppliermodel: any ;
+// __________________________//
 title = new FormControl();
 price = new FormControl();
 category = new FormControl();
@@ -46,30 +52,30 @@ description = new FormControl();
 
 
 
-//_______________________//
+// _______________________//
  supplierdate = new FormControl() ;
  product = new FormControl([]) ;
- supplier = new FormControl([]) ;
+ // supplier = new FormControl([]) ;
 
   constructor(private apiservice: ApiServiceService) { }
 
   ngOnInit() {
-    //here we will get the current role and display the necessary component____>
-    let userdata = JSON.parse(localStorage.getItem('userData'));
+    // here we will get the current role and display the necessary component____>
+    const userdata = JSON.parse(localStorage.getItem('userData'));
 
    console.log('user data getted init' + JSON.stringify(userdata));
    this.role = userdata.userData.role ;
-   this.ownerId = userdata.smartcontarct ;
+   this.ownerId = userdata.userData.idSmart ;
    console.log('ownerId' + this.ownerId);
 
 
-switch(this.role) {
-  case "Farmer":
+switch (this.role) {
+  case 'Farmer':
     // code block
-    //alert("farmer")
+    // alert("farmer")
     this.isFarmer = true ;
     break;
-  case "Supplier":
+  case 'Supplier':
 
   this.isSupplier = true ;
     // code block
@@ -80,19 +86,18 @@ switch(this.role) {
     // code block
 }
 
-//______load the list of suppliers________________//
-//this.getSuppliers()
-//this.getProducts();
+// ______load the list of suppliers________________//
+this.getSuppliers();
+this.getProducts();
 
 
 
   }
 
 
-  Getlocation()
-  {
+  Getlocation() {
     navigator.geolocation.getCurrentPosition((position) => {
-      console.log("Got position", position.coords);
+      console.log('Got position', position.coords);
       this.lat = position.coords.latitude;
       this.lon = position.coords.longitude;
     });
@@ -102,37 +107,35 @@ switch(this.role) {
 
 
 
-  getSuppliers()
-  {
+  getSuppliers() {
     this.apiservice.getListSuppliers()
     .subscribe(data => {
     console.log('list of suppliers' + JSON.stringify(data));
     this.suppliers = data ;
 
   } , error  => {
-        alert("eror" + error)
-    console.log("Error", error);
+        alert('eror' + error);
+    console.log('Error', error);
 
-    })
+    });
 
   }
 
 
 
-//________Get Products________________//
+// ________Get Products________________//
 
-getProducts()
-{
+getProducts() {
   this.apiservice.getAllProducst()
   .subscribe(data => {
   console.log('list of products ' + JSON.stringify(data));
   this.products = data ;
 
 } , error  => {
-      alert("eror" + error)
-  console.log("Error", error);
+      alert('eror' + error);
+  console.log('Error', error);
 
-  })
+  });
 
 }
 
@@ -142,12 +145,11 @@ getProducts()
 
   onSubmit() { this.submitted = true; }
 
-  CreateProduct()
-  {
-    let date = this.hardate.value
+  CreateProduct() {
+    const date = this.hardate.value;
     console.log('timpstamp' + date.getTime());
-    //alert("submitted");
-    let obj ={
+    // alert("submitted");
+    const obj = {
       'title' : this.title.value ,
       'type' : this.category.value ,
       'city' : this.city.value ,
@@ -155,25 +157,26 @@ getProducts()
       'hardate' : date.getTime(),
       'owner' : this.ownerId
 
-    }
+    };
 
 
-  //____________________________________//* */
+  // ____________________________________//* */
   this.apiservice.createProduct(obj)
     .subscribe(data => {
       console.log('data from back-edn' + JSON.stringify(data));
 
-      localStorage.setItem('currentProduct',JSON.stringify(data));
+      localStorage.setItem('currentProduct', JSON.stringify(data));
 
-    alert("Votre produit est ajouté au Blockchain !")
+    alert('Votre produit est ajouté au Blockchain !');
+    this.getProducts();
 
 
 
   } ,  error  => {
-        alert("eror" + error)
-    console.log("Error", error);
+        alert('eror' + error);
+    console.log('Error', error);
 
-    })
+    });
 
 
 
@@ -183,7 +186,7 @@ getProducts()
 
   public updateSupplier(event) {
     console.log('event' + event.target.value);
-    this.supplier = event.target.value ;
+    // this.supplier = event.target.value ;
 
   }
 
@@ -195,43 +198,45 @@ getProducts()
 
   }
 
-//___________Send to Supplier______________________//
-
-SendSupplier()
-{
-//console.log('ss' + this.supplierdate.value());
-  //let shipdate = this.supplierdate.value() ;
-  //alert("submitted");
-//console.log('date ' + this.supplierdate.value())
 
 
-  let obj ={
+// ___________Send to Supplier______________________//
+
+SendSupplier() {
+// console.log('ss' + this.supplierdate.value());
+  // let shipdate = this.supplierdate.value() ;
+  // alert("submitted");
+ console.log('date ' + JSON.stringify(this.form.value.supplier));
+ const date = this.supplierdate.value.getTime();
+
+
+  const obj = {
   'idProduct' : 1,
   'idOwner' : this.ownerId,
   'idReciver' : 1,
-  'shipdate' : new Date().getTime(),
+  'shipdate' : date,
   'city' : 'Sfax'
-  }
+  };
 
 
 
-//____________________________________//* */
+// ____________________________________//* */
 this.apiservice.sendProducttoSupplier(obj)
   .subscribe(data => {
     console.log('data from back-edn' + JSON.stringify(data));
 
-    alert('Votre Produti est ajouté avec envyé avec succes !')
-    //localStorage.setItem('currentProduct',JSON.stringify(data));
+    alert('Votre Produti est ajouté avec envyé avec succes !');
+    // localStorage.setItem('currentProduct',JSON.stringify(data));
 
 
 
 
 
 } ,  error  => {
-      alert("eror" + error)
-  console.log("Error", error);
+      alert('eror' + error);
+  console.log('Error', error);
 
-  })
+  });
 
 
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import * as socketIo from 'socket.io-client';
+import * as io from 'socket.io-client';
 import { Observable, of } from 'rxjs';
 
 const SERVER_URL = 'http://localhost:3000';
@@ -10,13 +10,16 @@ const SERVER_URL = 'http://localhost:3000';
 })
 export class RealTimeServiceService {
 
-  constructor() { }
+  constructor() {
+    this.socket = io('http://localhost:3000');
+  }
 
 
   private socket;
 
   public initSocket(): void {
-      this.socket = socketIo(SERVER_URL);
+      this.socket = io(SERVER_URL);
+      console.log('socket' + this.socket);
   }
 
 

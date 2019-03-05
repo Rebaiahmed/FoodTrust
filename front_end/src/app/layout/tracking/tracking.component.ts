@@ -21,12 +21,12 @@ export interface PeriodicElement {
 }
 
 
-//____________________//
+// ____________________//
 export interface Product {
   id: string;
   title: number;
   category: number;
-  show : string ;
+  show: string ;
 
 }
 
@@ -58,8 +58,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class TrackingComponent implements OnInit {
 
     // google maps zoom level
-    zoom: number = 16;
-    //dataSource: MatTableDataSource<any>;
+    zoom = 16;
+    // dataSource: MatTableDataSource<any>;
 
     displayedColumns: string[] = ['id', 'title', 'category'];
      products_data: Product[] ;
@@ -75,9 +75,9 @@ export class TrackingComponent implements OnInit {
 
     // initial center position for the map
     public products: any [] ;
-    public ownerId : any ;
-    public role : any ;
-    public productHistory : any ;
+    public ownerId: any ;
+    public role: any ;
+    public productHistory: any ;
 
     options = {
       layers: [
@@ -96,10 +96,10 @@ export class TrackingComponent implements OnInit {
         'Big Circle': circle([ 46.95, -122 ], { radius: 5000 }),
         'Big Square': polygon([[ 46.8, -121.55 ], [ 46.9, -121.55 ], [ 46.9, -121.7 ], [ 46.8, -121.7 ]])
       }
-    }
+    };
 
     name = 'Angular 5';
-    hierarchialGraph = {nodes: [], links: []}
+    hierarchialGraph = {nodes: [], links: []};
     curve = shape.curveBundle.beta(1);
     // curve = shape.curveLinear;
 
@@ -162,8 +162,8 @@ export class TrackingComponent implements OnInit {
   constructor(private apiservice: ApiServiceService) { }
 
   ngOnInit() {
-    //here we will get the current role and display the necessary component____>
-   /* let userdata = JSON.parse(localStorage.getItem('userData'));
+    // here we will get the current role and display the necessary component____>
+   const userdata = JSON.parse(localStorage.getItem('userData'));
 
    console.log('user data getted init' + JSON.stringify(userdata));
    this.role = userdata.userData.role ;
@@ -171,13 +171,13 @@ export class TrackingComponent implements OnInit {
    console.log('ownerId' + this.ownerId);
 
 
-/*switch(this.role) {
-  case "Farmer":
+switch (this.role) {
+  case 'Farmer':
     // code block
-    //alert("farmer")
+    // alert("farmer")
     this.isFarmer = true ;
     break;
-  case "Supplier":
+  case 'Supplier':
 
   this.isSupplier = true ;
     // code block
@@ -186,65 +186,62 @@ export class TrackingComponent implements OnInit {
 
   this.isRetailer = true ;
     // code block
-}*/
+}
 
-//this.getProducts();
+this.getProducts();
 this.showGraph();
 
 
 
   }
 
-  select(event)
-  {
-    console.log(event)
+  select(event) {
+    console.log(event);
   }
 
 
 
 
-GetProductHistory(event, productId)
-{
-  console.log("Checking passed item: ",productId);
-  alert("ee")
+GetProductHistory(event, productId) {
+  console.log('Checking passed item: ', productId);
+
 
   this.apiservice.getProductHistory(productId)
   .subscribe(data => {
     console.log('list of products ' + JSON.stringify(data));
     this.productHistory = data ;
 
-    //showGraphs
-    //_____display data___//
+    // showGraphs
+    // _____display data___//
 
   } , error  => {
-    alert("eror" + error)
-    console.log("Error", error);
+    alert('eror' + error);
+    console.log('Error', error);
 
-    })
+    });
 
 }
 
 
 
 
-//________Get Products________________//
+// ________Get Products________________//
 
-getProducts()
-{
+getProducts() {
   this.apiservice.getAllProducst()
   .subscribe(data => {
   console.log('list of products ' + data);
   this.products_data = data ;
-  //this.dataSource.data= data
+  // this.dataSource.data= data
   this.dataSource.data = data;
 
   console.log('' +   this.dataSource.data );
 
 } , error  => {
-      alert("eror" + error)
-  console.log("Error", error);
+      alert('eror' + error);
+  console.log('Error', error);
 
-  })
+  });
 
 }
 

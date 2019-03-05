@@ -22,13 +22,13 @@ import { ApiServiceService} from '../../api-service.service';
 })
 export class RegisterComponent implements OnInit {
 
-  newUser = new User('','','','');
+  newUser = new User('', '','','');
 
 
 
-//__________Attribute to show login or Register__________//
+// __________Attribute to show login or Register__________//
 
-showRegister : boolean= true;
+showRegister = true;
 
 
 
@@ -37,24 +37,24 @@ showRegister : boolean= true;
     Validators.required,
     Validators.email,
   ]);
-  cities : ['Tunis','Beja','Bizerte','Sfax', 'Nabeul'];
+  cities: ['Tunis','Beja','Bizerte','Sfax', 'Nabeul'];
   //_
-  farmerselected : boolean = false ;
-  supplierseleetced : boolean = false ;
-  retailerselected : boolean = false ;
+  farmerselected = false ;
+  supplierseleetced = false ;
+  retailerselected = false ;
 
 
-  //__________________________//
+  // __________________________//
   amount = new FormControl();
   role = new FormControl();
-  //______prepare the other fields________//
+  // ______prepare the other fields________//
   firstName = new FormControl();
   lastName = new FormControl();
   email = new FormControl();
-  phone= new FormControl();
+  phone = new FormControl();
   password = new FormControl();
   address = new FormControl();
-  city= new FormControl();
+  city = new FormControl();
 
   activitysector = new FormControl();
   supplierCompany = new FormControl();
@@ -68,22 +68,22 @@ onAmountChange() {
   console.log(this.amount.value);
 }
 
-//_______________________//
+// _______________________//
 
 onRoleSelection() {
 
-  switch(this.role.value) {
-    case "Farmer":
+  switch (this.role.value) {
+    case 'Farmer':
       // code block
       this.farmerselected = true;
-      //______________________//
+      // ______________________//
     this.retailerselected = false;
    this.supplierseleetced = false;
       break;
-    case "Supplier":
+    case 'Supplier':
       // code block
       this.supplierseleetced = true;
-      //___set the others to false____//
+      // ___set the others to false____//
       this.farmerselected = false;
       this.retailerselected = false;
 
@@ -91,7 +91,7 @@ onRoleSelection() {
     default:
       // code block
       this.retailerselected = true;
-         //___set the others to false____//
+         // ___set the others to false____//
       this.supplierseleetced = false;
       this.farmerselected = false;
   }
@@ -108,19 +108,19 @@ onRoleSelection() {
 
 
   async ngOnInit() {
-    //console.log('web3 hey' + this.web3.eth);
+    // console.log('web3 hey' + this.web3.eth);
     /*if ('enable' in this.web3.currentProvider) {
       await this.web3.currentProvider.enable();
     }*/
 
-    //const accounts = await this.web3.eth.getAccounts();
-    //console.log(accounts);
+    // const accounts = await this.web3.eth.getAccounts();
+    // console.log(accounts);
 }
 
-//__________________________//
+// __________________________//
 initAndDisplayAccount = () => {
 
-  let that = this;
+  const that = this;
 
   /*this.ether.getAccountInfo().then(function(acctInfo){
 
@@ -132,14 +132,13 @@ initAndDisplayAccount = () => {
 
   });*/
 
-  };
-  //_______________________//
+  }
+  // _______________________//
 
 
 
-//_________________________________//
-selectForm()
-{
+// _________________________________//
+selectForm() {
   this.showRegister = ! this.showRegister;
 }
 
@@ -148,13 +147,13 @@ selectForm()
 
   onRegister() {
 
-  //__________Get allthe data__________________//
+  // __________Get allthe data__________________//
 
   /*
   activitysector = new FormControl();
   supplierCompany = new FormControl();
   retailercompanyName = new FormControl();*/
-  let obj ={
+  const obj = {
     'firstName' : this.firstName.value ,
     'lastName' : this.lastName.value ,
     'phone' : this.phone.value ,
@@ -163,8 +162,8 @@ selectForm()
     'address' : this.address.value ,
     'activity' : this.activitysector.value ,
     'companyName' : this.supplierCompany.value ,
-    'retailercompanyName' :this.retailercompanyName.value
-  }
+    'retailercompanyName' : this.retailercompanyName.value
+  };
 
   console.log('obj' + JSON.stringify(obj));
 
@@ -182,10 +181,10 @@ selectForm()
 
 
   } ,  error  => {
-    alert("eror" + error)
-    console.log("Error", error);
+    alert('eror' + error);
+    console.log('Error', error);
 
-    })
+    });
 
 
 

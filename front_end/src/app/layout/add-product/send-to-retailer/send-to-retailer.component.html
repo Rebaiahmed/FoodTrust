@@ -1,38 +1,48 @@
 <div class="container">
 
+
+  <h1 *ngIf="!product">No notifications </h1>
+
+  <div *ngIf="product">
+
     <h2>Send this Product to Retailer</h2>
 
 
+    <div>
 
-  <p> Product Title : </p>
-  <p> Product Ctagory : </p>
+  <p> Product Title : Bannanes </p>
+  <p> Product Catagory : Fruits </p>
 
-  <p> Product Farmer date  : </p>
+  <p> Product Farmer date  :   {{ product.data.shipdate | date: 'dd/MM/yyyy' }}</p>
 
-  <p> Product Address  : </p>
+  <p> Product Address  :  {{ product.data.city }} </p>
+ 
+
+  <p> Product Farmer : Adem Mkacher </p>
+
+  </div>
 
       <form class="example-form">
 
 
-          <div fxFlex  fxLayout="column" fxLayout.lt-md="column">
-              <div fxFlexFill>
-                <h4>Select your Retailer </h4>
-                <mat-form-field>
-                  <select (change)="updateRetailer($event)"  matNativeControl required>
-                   <option [value]="ret[0]" *ngFor="let ret of retailers">
-                    {{ret.value }}
-                   </option>
-
-                  </select>
-                </mat-form-field>
-              </div>
-
-             </div>
+        <div fxFlexFill>
+          <h4>Select your Retailer </h4>
+  
+          <mat-form-field>
+            <mat-select placeholder="Select your Retailer">
+              <mat-option *ngFor="let ret of retailers" [value]="ret">
+                {{ret }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+    
+        </div>
 
 
         <mat-form-field>
                 <input matInput
-                [formControl]="date" [matDatepicker]="picker" placeholder="Choose a date">
+                [formControl]="retailerdate" [matDatepicker]="picker" placeholder="Choose a date">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -50,5 +60,6 @@
 
         </form>
 
+      </div>
 
   </div>

@@ -9,46 +9,50 @@ import { RealTimeServiceService } from '../../../real-time-service.service';
 })
 export class SidebarComponent implements OnInit {
     public showMenu: string;
-    public showFarmer:boolean = false ;
-    public showSupplier:boolean = false ;
-    public showRetailer:boolean = false ;
-    public changeMenu:boolean= false;
+    public showFarmer = false ;
+    public showSupplier = false ;
+    public showRetailer = false ;
+    public changeMenu = false;
+    role: string ;
 
-    constructor(private realtime:RealTimeServiceService) {}
+    constructor(private realtime: RealTimeServiceService) {}
 
     ngOnInit() {
         this.showMenu = '';
-        //_____get the farmer role ____//
-        /*let userdata = JSON.parse(localStorage.getItem('userData'));
+        // _____get the farmer role ____//
+        const userdata = JSON.parse(localStorage.getItem('userData'));
         console.log('userdata' + JSON.stringify(userdata.userData.role));
 
-        if(userdata.userData.role ==="Farmer")
-        {
-          this.showFarmer= true ;
+        this.role = userdata.userData.role;
+
+        if (userdata.userData.role === 'Farmer') {
+          this.showFarmer = true ;
         }
 
-        if(userdata.userData.role ==="Supplier")
-        {
-          this.showSupplier= true ;
+        if (userdata.userData.role === 'Supplier') {
+          this.showSupplier = true ;
         }
 
-        if(userdata.userData.role ==="Retailer")
-        {
+        if (userdata.userData.role === 'Retailer') {
 
-          this.showRetailer= true ;
-        }*/
+          this.showRetailer = true ;
+        }
+if (this.role === 'Supplier') {
+  this.getUserNotifications(1);
 
+}
 
 
     }
 
 
-    getUserNotifications(userId)
-{
+    getUserNotifications(userId) {
   this.realtime.onNotification(userId)
   .subscribe(data => {
     console.log('data rom server' + data);
    // this.notifications =data ;
+
+   alert('Vous avez une Notification');
    this.changeMenu = true ;
  });
 }
