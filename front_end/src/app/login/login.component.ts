@@ -24,7 +24,9 @@ export class LoginComponent implements OnInit {
 
 
     onLogin() {
-      console.log('e'+this.email.value )
+
+        this.router.navigate(['/dashboard']);
+      /*console.log('e'+this.email.value )
       let email = this.email.value ;
       let password = this.password.value ;
       let obj ={
@@ -42,7 +44,7 @@ export class LoginComponent implements OnInit {
     alert("eror" + error)
     console.log("Error", error);
 
-    })
+    }*/
 
     }
 }

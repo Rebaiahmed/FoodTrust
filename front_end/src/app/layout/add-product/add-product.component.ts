@@ -81,8 +81,8 @@ switch(this.role) {
 }
 
 //______load the list of suppliers________________//
-this.getSuppliers()
-this.getProducts();
+//this.getSuppliers()
+//this.getProducts();
 
 
 

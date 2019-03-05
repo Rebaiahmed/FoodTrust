@@ -6,9 +6,10 @@ import { NotificationsComponent } from './notifications.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatListModule} from '@angular/material/list';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatTableModule } from '@angular/material';
 
 @NgModule({
-    imports: [CommonModule, NotificationsRoutingModule,MatToolbarModule, MatGridListModule,MatListModule],
+    imports: [CommonModule, NotificationsRoutingModule,MatTableModule,MatToolbarModule, MatGridListModule,MatListModule],
     declarations: [NotificationsComponent]
 })
 export class NotificationsModule {}

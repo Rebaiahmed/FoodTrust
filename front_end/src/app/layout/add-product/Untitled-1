@@ -1,0 +1,93 @@
+<div class="example-container">
+
+
+<app-send-to-retailer *ngIf="isSupplier"></app-send-to-retailer>
+
+
+
+
+<app-confirm-product-reception *ngIf="isRetailer" ></app-confirm-product-reception>
+
+<mat-card *ngIf="isFarmer">
+
+  <mat-card-header>
+      <mat-card-title>Add a New Product</mat-card-title>
+  </mat-card-header>
+
+
+  <mat-card-content>
+
+    <form>
+
+      <mat-form-field>
+          <input [formControl]="title"  matInput placeholder="Product Title"
+          >
+      </mat-form-field>
+      <br/>
+
+      <mat-form-field>
+          <textarea [formControl]="description" matInput placeholder="Product Description"></textarea>
+      </mat-form-field>
+      <br/>
+
+      <mat-form-field>
+          <mat-select [formControl]="city" placeholder="Select a city">
+              <mat-option value="Beja">Beja</mat-option>
+              <mat-option value="Nabeul">Nabeul</mat-option>
+          </mat-select>
+      </mat-form-field>
+      <br/>
+
+
+      <mat-form-field>
+          <mat-select [formControl]="category" placeholder="Select a category">
+              <mat-option value="Fruits">Fruits</mat-option>
+              <mat-option value="vegetables">vegetables</mat-option>
+          </mat-select>
+      </mat-form-field>
+      <br/>
+
+<mat-form-field>
+          <input [formControl]="hardate" matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+<br/>
+
+<mat-form-field>
+    <input matInput [formControl]="price" placeholder="Price" type="number" class="example-right-align">
+    <span matPrefix>$&nbsp;</span>
+    <span matSuffix>.00</span>
+</mat-form-field>
+
+<br/>
+<mat-form-field>
+    <input [formControl]="quantity" matInput placeholder="Quantity" type="number" class="example-right-align">
+    <span matPrefix>$&nbsp;</span>
+
+</mat-form-field>
+
+
+<div fxFlex  fxLayout="column" fxLayout.lt-md="column">
+    <div fxFlexFill>
+      <h4>Select your Supplier </h4>
+      <mat-form-field>
+        <select matNativeControl required>
+          <option value="Beja">Fou ben Fou</option>
+          <option value="Beja">DOu ben Dou</option>
+
+        </select>
+      </mat-form-field>
+    </div>
+
+   </div>
+
+<br/>
+
+<button  (click)="CreateProduct()" mat-raised-button color="primary">Add</button>
+</form>
+  </mat-card-content>
+</mat-card>
+
+</div>

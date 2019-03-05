@@ -4,70 +4,158 @@
 
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
-      
+
         <!-- Position Column -->
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef> No. </th>
           <td mat-cell *matCellDef="let element"> {{element[0]}}</td>
         </ng-container>
-      
+
         <!-- Name Column -->
         <ng-container matColumnDef="title">
           <th mat-header-cell *matHeaderCellDef> title </th>
           <td mat-cell *matCellDef="let element"> {{element[1]}}</td>
         </ng-container>
-      
+
         <!-- Weight Column -->
         <ng-container matColumnDef="category">
           <th mat-header-cell *matHeaderCellDef> category </th>
-          <td mat-cell *matCellDef="let element"> 
-            {{element[2]}} 
+          <td mat-cell *matCellDef="let element">
+            {{element[2]}}
             <button mat-fab  (click)="GetProductHistory($event, element[0])">
-              
+
               </button>
           </td>
         </ng-container>
 
-        
-   
 
-        
 
-        
-      
-      
-      
+
+
+
+
+
+
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
 
       <div class="row">
 
-        
+
       </div>
 
 
       <div class="row">
 
-    Product history 
+    <h3>Product history</h3>
+
 
 
     <mat-card>
 
+        <mat-tab-group dynamicHeight>
 
-      
+            <mat-tab label="Product">
+                <div class="example-large-box mat-elevation-z4">
+
+                   <mat-list>
+                      <h3 mat-subheader>Product :</h3>
+                      <mat-list-item>
+
+                        <h4 class="display-text" mat-line> Product Name : </h4>
+                        <h4 mat-line> Product category : </h4>
+                        <h4 mat-line> Product Price : </h4>
+                        <h4 mat-line> Product harvestdate : </h4>
+                        <h4 mat-line> Product SupplierDate : </h4>
+                        <h4 mat-line> Product RetailerDate : </h4>
+                      </mat-list-item>
+
+
+                    </mat-list>
+
+
+                </div>
+              </mat-tab>
+
+            <mat-tab label="Farmer">
+              <div class="example-large-box mat-elevation-z4">
+                  <mat-list>
+                      <h3 mat-subheader>Framer :</h3>
+                      <mat-list-item>
+                          <mat-icon svgIcon="thumbs-up"></mat-icon>
+                        <h4 class="display-text" mat-line> Farmer Username  : </h4>
+                        <h4 mat-line> Farmer Activity : </h4>
+                        <h4 mat-line> Farmer location : </h4>
+
+                      </mat-list-item>
+
+
+                    </mat-list>
+              </div>
+            </mat-tab>
+
+            <mat-tab label="Supplier">
+                <div class="example-large-box mat-elevation-z4">
+                    <mat-list>
+                        <h3 mat-subheader>Framer :</h3>
+                        <mat-list-item>
+                            <mat-icon svgIcon="thumbs-up"></mat-icon>
+                          <h4 mat-line> Farmer Username  : </h4>
+                          <h4 mat-line> Farmer CompanyName : </h4>
+                          <h4 mat-line> Farmer location : </h4>
+
+                        </mat-list-item>
+
+
+                      </mat-list>
+                </div>
+            </mat-tab>
+
+            <mat-tab label="Retailer">
+                <div class="example-large-box mat-elevation-z4">
+                    <mat-list>
+                        <h3 mat-subheader>Retailer :</h3>
+                        <mat-list-item>
+                            <mat-icon svgIcon="thumbs-up"></mat-icon>
+                          <h4 mat-line> Retailer Username  : </h4>
+                          <h4 mat-line> Retailer CompanyName : </h4>
+                          <h4 mat-line> Retailer location : </h4>
+
+                        </mat-list-item>
+
+
+                      </mat-list>
+                </div>
+            </mat-tab>
+
+
+
+          </mat-tab-group>
+
+
+
+
+
+
+          <div style="width: 960px; height: 500px;">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d2965.0824050173574!2d-93.63905729999999!3d41.998507000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sWebFilings%2C+University+Boulevard%2C+Ames%2C+IA!5e0!3m2!1sen!2sus!4v1390839289319" width="100%" height="100%" frameborder="0" style="border:0"></iframe>
+           </div>
+
+
         <ngx-graph
         class="chart-container"
         [links]="hierarchialGraph.links"
         [nodes]="hierarchialGraph.nodes"
         [curve]="curve">
-  
+
         <ng-template #defsTemplate>
           <svg:marker id="arrow" viewBox="0 -5 10 10" refX="8" refY="0" markerWidth="4" markerHeight="4" orient="auto">
             <svg:path d="M0,-5L10,0L0,5" class="arrow-head" />
           </svg:marker>
         </ng-template>
-  
+
         <ng-template #nodeTemplate let-node>
           <svg:g class="node"
             ngx-tooltip
@@ -78,7 +166,7 @@
             <svg:text alignment-baseline="central" [attr.x]="10" [attr.y]="node.height / 2">{{node.label}}</svg:text>
           </svg:g>
         </ng-template>
-  
+
         <ng-template #linkTemplate let-link>
           <svg:g class="edge">
             <svg:path
@@ -87,7 +175,7 @@
             </svg:path>
           </svg:g>
         </ng-template>
-  
+
       </ngx-graph>
     </mat-card>
 

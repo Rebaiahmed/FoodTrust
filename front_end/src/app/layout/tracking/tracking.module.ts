@@ -15,10 +15,14 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatListModule} from '@angular/material/list';
+
 
 @NgModule({
     imports: [CommonModule, TrackingRoutingModule, MatGridListModule,NgxGraphModule,
-      NgxChartsModule,LeafletModule, MatTableModule,MatCardModule,MatButtonModule,MatIconModule],
+      NgxChartsModule,LeafletModule, MatTableModule,MatCardModule,MatButtonModule,MatIconModule,MatTabsModule,
+      MatListModule, MatIconModule],
     declarations: [TrackingComponent]
 })
 export class TrackingModule {}

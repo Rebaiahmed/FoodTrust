@@ -1,28 +1,32 @@
 <div id="sidebar">
     <mat-nav-list>
-      <a *ngIf="showFarmer" mat-list-item [routerLink]="['/dashboard/Productchain']">
+      <a  mat-list-item [routerLink]="['/dashboard/Productchain']">
         <mat-icon class="sidenav-icon">add</mat-icon> Add Product
     </a>
 
-    <a *ngIf="showSupplier" mat-list-item [routerLink]="['/dashboard/Productchain']">
+    <a  mat-list-item [routerLink]="['/dashboard/Productchain']">
       <mat-icon class="sidenav-icon">send</mat-icon> Send Product to Retailer
     </a>
 
 
-    <a *ngIf="showRetailer" mat-list-item [routerLink]="['/dashboard/Productchain']">
+    <a  mat-list-item [routerLink]="['/dashboard/Productchain']">
       <mat-icon class="sidenav-icon">confirmation_number</mat-icon> Confirm Product reception
     </a>
 
 
     <a mat-list-item  [routerLink]="['/dashboard/tracking']">
-      <mat-icon class="sidenav-icon">track_changes</mat-icon> Tracking Product
+      <mat-icon class="sidenav-icon ">track_changes</mat-icon> Tracking Product
     </a>
 
     <a mat-list-item  [routerLink]="['/dashboard/transactions']">
       <mat-icon class="sidenav-icon">history</mat-icon> Transactions
     </a>
-    <a mat-list-item [routerLink]="['/dashboard/notifications']">
+    <a *ngIf="!changeMenu" mat-list-item [routerLink]="['/dashboard/notifications']">
       <mat-icon class="sidenav-icon">notification_important</mat-icon> Notifications
+    </a>
+
+    <a *ngIf="changeMenu" mat-list-item [routerLink]="['/dashboard/notifications']">
+      <mat-icon class="sidenav-icon red-icon">notification_important</mat-icon> Notifications
     </a>
 
     <a mat-list-item  [routerLink]="['/dashboard/wallet']">

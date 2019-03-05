@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/takeWhile';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { latLng, tileLayer } from 'leaflet';
+import { latLng, tileLayer, circle, polygon } from 'leaflet';
 
 import { ApiServiceService} from '../../api-service.service';
 
@@ -87,12 +87,23 @@ export class TrackingComponent implements OnInit {
       center: latLng(46.879966, -121.726909)
     };
 
+    layersControl = {
+      baseLayers: {
+        'Open Street Map': tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' }),
+        'Open Cycle Map': tileLayer('http://{s}.tile.opencyclemap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
+      },
+      overlays: {
+        'Big Circle': circle([ 46.95, -122 ], { radius: 5000 }),
+        'Big Square': polygon([[ 46.8, -121.55 ], [ 46.9, -121.55 ], [ 46.9, -121.7 ], [ 46.8, -121.7 ]])
+      }
+    }
+
     name = 'Angular 5';
     hierarchialGraph = {nodes: [], links: []}
     curve = shape.curveBundle.beta(1);
     // curve = shape.curveLinear;
 
-   
+
 
     showGraph() {
       this.hierarchialGraph.nodes = [
@@ -146,13 +157,13 @@ export class TrackingComponent implements OnInit {
 
     }
 
-    
+
 
   constructor(private apiservice: ApiServiceService) { }
 
   ngOnInit() {
     //here we will get the current role and display the necessary component____>
-    let userdata = JSON.parse(localStorage.getItem('userData'));
+   /* let userdata = JSON.parse(localStorage.getItem('userData'));
 
    console.log('user data getted init' + JSON.stringify(userdata));
    this.role = userdata.userData.role ;
@@ -177,7 +188,7 @@ export class TrackingComponent implements OnInit {
     // code block
 }*/
 
-this.getProducts();
+//this.getProducts();
 this.showGraph();
 
 
@@ -202,13 +213,13 @@ GetProductHistory(event, productId)
     console.log('list of products ' + JSON.stringify(data));
     this.productHistory = data ;
 
-    //showGraphs 
+    //showGraphs
     //_____display data___//
-  
+
   } , error  => {
     alert("eror" + error)
     console.log("Error", error);
-  
+
     })
 
 }
