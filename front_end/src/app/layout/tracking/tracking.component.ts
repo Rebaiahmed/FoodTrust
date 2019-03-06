@@ -65,6 +65,10 @@ export class TrackingComponent implements OnInit {
      products_data: Product[] ;
      dataSource = new MatTableDataSource<Product>();
 
+     isFarmer = false ;
+     isSupplier = false ;
+     isRetailer = false ;
+
     /*options = {
       layers: [
         tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
